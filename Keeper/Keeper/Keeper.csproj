@@ -145,15 +145,16 @@
     <None Include="Keeper_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Graphics\player.png" />
+    <Content Include="Content\Graphics\player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Audio\" />
-    <Folder Include="Content\" />
+    <Folder Include="Content\Audio\" />
     <Folder Include="VisualControlers\Enemies\" />
     <Folder Include="VisualControlers\Gem\" />
     <Folder Include="VisualControlers\Pickups\" />
