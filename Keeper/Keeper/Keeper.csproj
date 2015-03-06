@@ -135,6 +135,8 @@
     </Compile>
     <Compile Include="Keeper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisualControlers\IVisualControl.cs" />
+    <Compile Include="VisualControlers\Player\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -143,13 +145,19 @@
     <None Include="Keeper_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Graphics\player.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Audio\" />
     <Folder Include="Content\" />
+    <Folder Include="VisualControlers\Enemies\" />
+    <Folder Include="VisualControlers\Gem\" />
+    <Folder Include="VisualControlers\Pickups\" />
+    <Folder Include="VisualControlers\Projectiles\" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
