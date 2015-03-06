@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Keeper.VisualControlers.Player {
     class Player : IVisualControl {
-
+                                            //this is just a test to make sure I am not an idiot
         public Texture2D texture { get; set; }
         public Vector2 position { get; set; }
         public bool active { get; set; }
