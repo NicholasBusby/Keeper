@@ -14,7 +14,7 @@ namespace Keeper.VisualControlers.Player {
         public Vector2 position { get; set; }
         public bool active { get; set; }
         private float rotation = 0f;
-        private double speed = 0;
+        private float speed = 0;
 
         public void Initialize(Texture2D texture, Vector2 position) {
             this.position = position;
@@ -23,16 +23,16 @@ namespace Keeper.VisualControlers.Player {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(texture, position, null, Color.White, rotation, Vector2.Zero, 1f,
+            spriteBatch.Draw(texture, position, null, Color.White, rotation, new Vector2(75), 1f,
                SpriteEffects.None, 0f);
         }
 
         public void Update(GameTime gameTime, float movementAngle, float movementSpeed, float shootAngle) {
             if (movementSpeed > 0) {
                 rotation = movementAngle;
-                speed = movementSpeed;
+                speed = movementSpeed / 50;
                 Vector2 movement = angleToVector(movementAngle);
-                //movement = Vector2.Multiply(movement, movementSpeed);
+                movement = Vector2.Multiply(movement, speed);
                 position = Vector2.Add(position, movement);
             } else {
                 movementSpeed = 0;
