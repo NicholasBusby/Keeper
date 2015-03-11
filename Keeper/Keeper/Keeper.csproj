@@ -140,6 +140,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualControlers\Controls\Joystick.cs" />
     <Compile Include="VisualControlers\Player\Player.cs" />
+    <Compile Include="VisualControlers\Player\Turret.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -156,6 +157,7 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Content\Graphics\turret.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Audio\" />
