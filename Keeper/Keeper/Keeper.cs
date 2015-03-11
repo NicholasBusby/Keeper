@@ -10,6 +10,7 @@ namespace Keeper
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
+        Turret turret;
         Joystick leftStick;
         Joystick rightStick;
 
@@ -22,6 +23,7 @@ namespace Keeper
         protected override void Initialize()
         {
             player = new Player();
+            turret = new Turret();
             leftStick = new Joystick();
             rightStick = new Joystick();
             base.Initialize();
@@ -37,6 +39,7 @@ namespace Keeper
             Vector2 rightJoystickPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X + GraphicsDevice.Viewport.TitleSafeArea.Width - 500, joyStickY);
 
             player.Initialize(Content.Load<Texture2D>("Graphics\\player"), playerPosition);
+            turret.Initialize(Content.Load<Texture2D>("Graphics\\turret"), player.position);
             leftStick.Initialize(Content.Load<Texture2D>("Graphics\\joyStick"), leftJoystickPosition);
             rightStick.Initialize(Content.Load<Texture2D>("Graphics\\joyStick"), rightJoystickPosition);
         }
@@ -50,7 +53,8 @@ namespace Keeper
         {
             leftStick.Update(gameTime);
             rightStick.Update(gameTime);
-            player.Update(gameTime, leftStick.rotationOutput, leftStick.length, rightStick.rotationOutput);
+            player.Update(gameTime, leftStick.rotationOutput, leftStick.length);
+            turret.Update(gameTime, player.position, rightStick.rotationOutput, rightStick.length > 0);
             base.Update(gameTime);
         }
 
@@ -59,6 +63,7 @@ namespace Keeper
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             player.Draw(spriteBatch);
+            turret.Draw(spriteBatch);
 
             leftStick.Draw(spriteBatch);
             rightStick.Draw(spriteBatch);

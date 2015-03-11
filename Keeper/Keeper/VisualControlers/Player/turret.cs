@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Keeper.VisualControlers.Player {
-    class Player {
-
+    class Turret {
         public Texture2D texture { get; set; }
         public Vector2 position { get; set; }
         public bool active { get; set; }
         private float rotation = 0f;
-        private float speed = 0;
 
         public void Initialize(Texture2D texture, Vector2 position) {
             this.position = position;
@@ -27,15 +24,10 @@ namespace Keeper.VisualControlers.Player {
                SpriteEffects.None, 0f);
         }
 
-        public void Update(GameTime gameTime, float movementAngle, float movementSpeed) {
-            if (movementSpeed > 0) {
-                rotation = movementAngle;
-                speed = movementSpeed / 50;
-                Vector2 movement = angleToVector(movementAngle);
-                movement = Vector2.Multiply(movement, speed);
-                position = Vector2.Add(position, movement);
-            } else {
-                movementSpeed = 0;
+        public void Update(GameTime gameTime, Vector2 position, float rotation, bool firing) {
+            this.position = position;
+            if (firing) {
+                this.rotation = rotation;
             }
         }
 
