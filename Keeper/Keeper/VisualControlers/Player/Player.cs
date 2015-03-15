@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Keeper.VisualControlers.Player {
     class Player {
-
         public Texture2D texture { get; set; }
         public Vector2 position { get; set; }
         public bool active { get; set; }
