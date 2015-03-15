@@ -141,6 +141,7 @@
     <Compile Include="VisualControlers\Controls\Joystick.cs" />
     <Compile Include="VisualControlers\Player\Player.cs" />
     <Compile Include="VisualControlers\Player\Turret.cs" />
+    <Compile Include="VisualControlers\Projectiles\Bullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -149,7 +150,12 @@
     <None Include="Keeper_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Graphics\joyStick.png" />
+    <Content Include="Content\Graphics\bullet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\joyStick.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Graphics\player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -157,14 +163,15 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Content\Graphics\turret.png" />
+    <Content Include="Content\Graphics\turret.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Audio\" />
     <Folder Include="VisualControlers\Enemies\" />
     <Folder Include="VisualControlers\Gem\" />
     <Folder Include="VisualControlers\Pickups\" />
-    <Folder Include="VisualControlers\Projectiles\" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

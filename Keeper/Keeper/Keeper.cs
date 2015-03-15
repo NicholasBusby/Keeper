@@ -1,7 +1,10 @@
 ﻿using Keeper.VisualControlers.Controls;
 using Keeper.VisualControlers.Player;
+using Keeper.VisualControlers.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 
 namespace Keeper
 {
@@ -13,6 +16,9 @@ namespace Keeper
         Turret turret;
         Joystick leftStick;
         Joystick rightStick;
+        Texture2D bulletTexture;
+        List<Bullet> playerBullets = new List<Bullet>();
+        TimeSpan playerShootTimer;
 
         public Keeper()
         {
@@ -26,6 +32,7 @@ namespace Keeper
             turret = new Turret();
             leftStick = new Joystick();
             rightStick = new Joystick();
+            playerShootTimer = TimeSpan.Zero;
             base.Initialize();
         }
 
@@ -42,6 +49,7 @@ namespace Keeper
             turret.Initialize(Content.Load<Texture2D>("Graphics\\turret"), player.position);
             leftStick.Initialize(Content.Load<Texture2D>("Graphics\\joyStick"), leftJoystickPosition);
             rightStick.Initialize(Content.Load<Texture2D>("Graphics\\joyStick"), rightJoystickPosition);
+            bulletTexture = Content.Load<Texture2D>("Graphics\\bullet");
         }
 
         protected override void UnloadContent()
@@ -55,6 +63,19 @@ namespace Keeper
             rightStick.Update(gameTime);
             player.Update(gameTime, leftStick.rotationOutput, leftStick.length);
             turret.Update(gameTime, player.position, rightStick.rotationOutput, rightStick.length > 0);
+            if (rightStick.length > 0) {
+                playerShootTimer += gameTime.ElapsedGameTime;
+                if (playerShootTimer > TimeSpan.FromSeconds(.3)) {
+                    playerShootTimer = TimeSpan.Zero;
+                    Bullet bullet = new Bullet();
+                    bullet.Initialize(bulletTexture, player.position, rightStick.rotationOutput, 5f);
+                    playerBullets.Add(bullet);
+                }
+            }
+            foreach (Bullet bullet in playerBullets) { 
+                bullet.Update(gameTime, GraphicsDevice.Viewport.Bounds); 
+            }
+            playerBullets.RemoveAll(x => !x.active);
             base.Update(gameTime);
         }
 
@@ -63,6 +84,9 @@ namespace Keeper
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             player.Draw(spriteBatch);
+            foreach (Bullet bullet in playerBullets) { 
+                bullet.Draw(spriteBatch); 
+            }
             turret.Draw(spriteBatch);
 
             leftStick.Draw(spriteBatch);
